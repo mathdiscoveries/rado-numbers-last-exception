@@ -1,0 +1,182 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "The Last Exception for Two-Colour Rado Numbers of x + y + c = kz"
+  description: >-
+    Unconditional pure core Lean 4 formalization (zero external dependencies,
+    zero Mathlib imports, zero sorry, zero native_decide, standard axioms only)
+    determining the exact last exception c*(k) and threshold nu(k) for the
+    2-colour Rado number R(c, k) of x + y + c = kz for every integer k >= 3.
+    For odd k, c*(k) = k(k^2 + k - 4)/2 and nu(k) = c*(k) + 1; for even k,
+    c*(k) = k(k^2 - 2)/2 and nu(k) = c*(k) + 2, yielding nu(k) = 13, 30, 66,
+    104, 183, 250, 388, 492, ... for k = 3..10 and settling the conjecture
+    nu(5) = 66 of Kim, Song, and Hwang (2023). Both halves are formalized
+    unconditionally: the upper half R(c, k) = LB(c, k) for all valid c > c*(k)
+    via a reflection argument x |-> N + 1 - x, and the lower half
+    R(c*(k), k) > LB(c*(k), k) (Martinelli and Schaal 2007, Lemma 3).
+  authors:
+    - "Tyler B. Hughes"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Tyler B. Hughes"
+
+classification:
+  arxiv:
+    - "math.CO"
+  msc2020:
+    - "05D10"
+    - "11B75"
+
+sources:
+  - title: "The last exception for two-colour Rado numbers"
+    authors:
+      - "Tyler B. Hughes"
+    id: "https://mathdiscoveries.org/results/rado-numbers-last-exception"
+    type: "original-proof"
+    relationship: "other"
+    note: >-
+      Original upper-half proof and complete core Lean 4 formalization (both
+      halves) discovered, written, and verified by AI research agents built and
+      directed by Tyler B. Hughes. Not found in the literature searches logged
+      (arXiv, zbMATH Open, DataCite, CORE, Zenodo, HAL, OSF, GitHub, and a
+      5-query Google Scholar sweep on 2026-11-22; full text of Myers 2015
+      thesis and paywalled Kim-Song-Hwang 2026 remain unread). No human
+      mathematician has yet refereed the proof.
+    author_endorsement: "participated"
+  - title: "Two-color Rado number of x + y + c = kz for large c"
+    authors:
+      - "Byung Mun Kim"
+      - "Byung Chul Song"
+      - "Woonjae Hwang"
+    id: "https://doi.org/10.1016/j.disc.2023.113597"
+    type: "paper"
+    location: "Discrete Mathematics 346 (2023), 113597"
+    relationship: "background"
+    note: >-
+      Establishes R(c, k) = LB(c, k) above an asymptotic threshold and poses
+      determining the exact threshold nu(k), including the conjecture nu(5) = 66.
+    author_endorsement: "not-contacted"
+  - title: "Two-color Rado numbers for x + y + c = kz"
+    authors:
+      - "A. Martinelli"
+      - "D. Schaal"
+    type: "paper"
+    location: "Ars Combinatoria 85 (2007), 161-171"
+    relationship: "background"
+    note: >-
+      Establishes the general lower bound LB(c, k) and Lemma 3 showing that
+      c*(k) is an exception (R(c*(k), k) > LB(c*(k), k)) for every k >= 3.
+    author_endorsement: "not-contacted"
+  - title: "Two-color Rado numbers for x + y + c = kz"
+    authors:
+      - "S. Jones"
+      - "D. Schaal"
+    id: "https://doi.org/10.1016/j.disc.2004.06.022"
+    type: "paper"
+    location: "Discrete Mathematics 289 (2004), 63-69"
+    relationship: "background"
+    author_endorsement: "not-contacted"
+  - title: "Two-color Rado numbers for x + y + c = 3z"
+    authors:
+      - "A. E. Kezdy"
+      - "H. S. Snevily"
+      - "C. Wang"
+    type: "paper"
+    location: "Journal of Combinatorial Mathematics and Combinatorial Computing (2009)"
+    relationship: "background"
+    note: "Determines the k = 3 case nu(3) = 13."
+    author_endorsement: "not-contacted"
+  - title: "The 2-color Rado number of x + y + c = 4z"
+    authors:
+      - "S. Guo"
+    type: "paper"
+    location: "Discrete Mathematics (2010)"
+    relationship: "background"
+    note: "Settles the k = 4 case nu(4) = 30 together with the 2023 remark."
+    author_endorsement: "not-contacted"
+
+related_formalizations: []
+
+status:
+  scope: >-
+    Complete, unconditional proof of both halves of the exact last-exception
+    theorem for every integer k >= 3 in pure core Lean 4 (zero Mathlib imports,
+    68 verified declarations): (1) R(c, k) = LB(c, k) for every valid c > c*(k),
+    where Valid c k means k odd or c even; (2) R(c*(k), k) > LB(c*(k), k) via
+    explicit non-monochromatic 2-colourings of [1, LB(c*(k), k)] for odd and
+    even k; (3) the threshold equivalence nu_iff, exact small values for
+    k = 3..10, and the Kim-Song-Hwang (2023) conjecture nu(5) = 66. Does not
+    determine individual Rado numbers R(c, k) for exceptions c <= c*(k).
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Quot.sound", "Classical.choice"]
+
+automation:
+  methods:
+    - method: agent
+      models: []
+      framework: "AI research agents built and directed by Tyler B. Hughes"
+      tool_setup: >-
+        AI research agents built and directed by Tyler B. Hughes derived the
+        reflection proof of the upper half and built and verified the core
+        Lean 4 formalization.
+      cost:
+        wall_time: "not tracked"
+        spend_usd: "not tracked"
+        hardware: "local machine"
+      prompting_notes: "Goal-directed mathematical discovery and Lean 4 formalization."
+  spend_usd: "not tracked"
+  notes: >-
+    Generated and checked by AI research agents built and directed by Tyler B.
+    Hughes. No human mathematician has yet refereed the proof.
+
+fidelity:
+  divergences: >-
+    None. All claims on mathdiscoveries.org/results/rado-numbers-last-exception
+    (both halves of the main theorem for all k >= 3, nu_iff, nu(5) = 66, and
+    the k = 3..10 threshold table) are formalized unconditionally in core
+    Lean 4 with exact statement fidelity.
+
+review:
+  status: agent-reviewed
+  reviewers:
+    - "AI review agents directed by Tyler B. Hughes"
+  notes: >-
+    Audited by AI review agents and verified for standard axioms only via
+    RadoNu/Verify.lean and 6-kernel comparator replay. No human mathematician
+    has yet refereed the proof.
+
+alignment:
+  namespace: "RadoNuChallenge"
+  statements:
+    - source: "Main theorem (both halves, expanded quantifiers): for every k >= 3, R(c, k) = LB(c, k) for every valid c > c*(k) and R(c*(k), k) > LB(c*(k), k)"
+      lean: "RadoNuChallenge.rado_last_exception"
+      module: "Challenge"
+      status: proved
+      note: "Unconditional core Lean 4 proof with all quantifiers written out explicitly."
+    - source: "Upper half: R(c, k) = LB(c, k) for every k >= 3 and every valid c > c*(k)"
+      lean: "RadoNuChallenge.rado_eq_LB"
+      module: "Challenge"
+      status: proved
+      note: "Original reflection proof x |-> N + 1 - x combined with Martinelli-Schaal lower bound."
+    - source: "Lower half (Martinelli-Schaal Lemma 3): c*(k) is an exception for every k >= 3"
+      lean: "RadoNuChallenge.not_forced_cstar"
+      module: "Challenge"
+      status: proved
+      note: "Explicit non-monochromatic 2-colourings of [1, LB(c*(k), k)] for odd and even k."
+    - source: "Threshold equivalence: R(c, k) = LB(c, k) for all valid c >= v iff c*(k) < v"
+      lean: "RadoNuChallenge.nu_iff"
+      module: "Challenge"
+      status: proved
+      note: "Determines nu(k) = c*(k) + 1 (odd k) and c*(k) + 2 (even k) for all k >= 3."
+    - source: "Kim-Song-Hwang (2023) conjecture: nu(5) = 66"
+      lean: "RadoNuChallenge.nu_5_eq_66"
+      module: "Challenge"
+      status: proved
+      note: "R(c, 5) = LB(c, 5) for all c >= 66, and false for c = 65."
+    - source: "Exact small values nu(k) = 13, 30, 66, 104, 183, 250, 388, 492 for k = 3..10"
+      lean: "RadoNuChallenge.nu_small_values"
+      module: "Challenge"
+      status: proved
+      note: "Direct kernel decide check."

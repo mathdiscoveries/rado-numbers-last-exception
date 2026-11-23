@@ -1,0 +1,14 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "RadoNuChallenge.rado_last_exception",
+    "RadoNuChallenge.rado_eq_LB",
+    "RadoNuChallenge.not_forced_cstar",
+    "RadoNuChallenge.nu_iff",
+    "RadoNuChallenge.nu_5_eq_66",
+    "RadoNuChallenge.nu_small_values"
+  ],
+  "definition_names": [],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
+}
