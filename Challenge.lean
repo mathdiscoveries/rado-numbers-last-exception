@@ -82,7 +82,9 @@ theorem rado_eq_LB {k c : Nat} (hk : 3 ≤ k) (hc : cstar k < c)
     (hval : Valid c k) : IsRado c k (LB c k) := by
   sorry
 
-/-- Lower half: `c*(k)` is an exception (`R(c*(k), k) > LB(c*(k), k)`) for every `k ≥ 3`. -/
+/-- Lower half (Martinelli–Schaal 2007, Lemma 3): `[1, LB(c*(k), k)]` is not forced
+for `x + y + c*(k) = k z` (some 2-colouring has no monochromatic solution, so `c*(k)`
+is an exception to `R(c, k) = LB(c, k)`). -/
 theorem not_forced_cstar {k : Nat} (hk : 3 ≤ k) :
     ¬ Forced (cstar k) k (LB (cstar k) k) := by
   sorry
