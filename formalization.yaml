@@ -6,15 +6,18 @@ project:
   description: >-
     Unconditional pure core Lean 4 formalization (zero external dependencies,
     zero Mathlib imports, zero sorry, zero native_decide, standard axioms only)
-    determining the exact last exception c*(k) and threshold nu(k) for the
-    2-colour Rado number R(c, k) of x + y + c = kz for every integer k >= 3.
-    For odd k, c*(k) = k(k^2 + k - 4)/2 and nu(k) = c*(k) + 1; for even k,
-    c*(k) = k(k^2 - 2)/2 and nu(k) = c*(k) + 2, yielding nu(k) = 13, 30, 66,
-    104, 183, 250, 388, 492, ... for k = 3..10 and settling the conjecture
-    nu(5) = 66 of Kim, Song, and Hwang (2023). Both halves are formalized
-    unconditionally: the upper half R(c, k) = LB(c, k) for all valid c > c*(k)
-    via a reflection argument x |-> N + 1 - x, and the lower half
-    R(c*(k), k) > LB(c*(k), k) (Martinelli and Schaal 2007, Lemma 3).
+    determining the exact last exception c*(k) for the 2-colour Rado number
+    R(c, k) of x + y + c = kz for every integer k >= 3, where c*(k) =
+    k(k^2 + k - 4)/2 for odd k and k(k^2 - 2)/2 for even k. Both halves are
+    formalized unconditionally: (1) an original reflection proof (x |-> N+1-x)
+    of the upper half R(c, k) = LB(c, k) for every valid c > c*(k) (valid means
+    k odd or c even), and (2) Martinelli and Schaal's (2007) Lemma 3 lower half
+    R(c*(k), k) > LB(c*(k), k). In nu_iff, the property "R(c, k) = LB(c, k) for
+    all valid c >= v" holds iff c*(k) < v, so the least integer cutoff is
+    c*(k) + 1 while the least valid cutoff nu(k) (requiring Valid nu(k) k, i.e.,
+    even when k is even) is c*(k) + 1 for odd k and c*(k) + 2 for even k,
+    giving least valid cutoffs 13, 30, 66, 104, 183, 250, 388, 492 for k = 3..10
+    and settling the Kim-Song-Hwang (2023) conjecture nu(5) = 66.
   authors:
     - "Tyler B. Hughes"
   license: "Apache-2.0"
@@ -36,14 +39,31 @@ sources:
     type: "original-proof"
     relationship: "other"
     note: >-
-      Original upper-half proof and complete core Lean 4 formalization (both
-      halves) discovered, written, and verified by AI research agents built and
-      directed by Tyler B. Hughes. Not found in the literature searches logged
-      (arXiv, zbMATH Open, DataCite, CORE, Zenodo, HAL, OSF, GitHub, and a
-      5-query Google Scholar sweep on 2026-11-22; full text of Myers 2015
-      thesis and paywalled Kim-Song-Hwang 2026 remain unread). No human
-      mathematician has yet refereed the proof.
+      Original upper-half reflection proof (R(c, k) = LB(c, k) for all valid
+      c > c*(k), settling nu_iff and nu(5) = 66) and complete core Lean 4
+      formalization of both halves, discovered, written, and verified by AI
+      research agents built and directed by Tyler B. Hughes. The lower-half
+      theorem R(c*(k), k) > LB(c*(k), k) formalized alongside it is due to
+      Martinelli and Schaal (2007, Lemma 3), credited separately below. Not
+      found in the literature searches logged (arXiv, zbMATH Open, DataCite,
+      CORE, Zenodo, HAL, OSF, GitHub, and a 5-query Google Scholar sweep on
+      2026-11-22; full text of Myers 2015 thesis and paywalled Kim-Song-Hwang
+      2026 remain unread). No human mathematician has yet refereed the proof.
     author_endorsement: "participated"
+  - title: "Two-color Rado numbers for x + y + c = kz"
+    authors:
+      - "A. Martinelli"
+      - "D. Schaal"
+    type: "paper"
+    location: "Ars Combinatoria 85 (2007), 161-171"
+    relationship: "other"
+    note: >-
+      Substantive prior source for the general lower bound LB(c, k) and for
+      Lemma 3, which proves the lower-half exception theorem
+      R(c*(k), k) > LB(c*(k), k) for every k >= 3 (formalized directly in
+      RadoNuChallenge.not_forced_cstar and the second conjunct of
+      RadoNuChallenge.rado_last_exception).
+    author_endorsement: "not-contacted"
   - title: "Two-color Rado number of x + y + c = kz for large c"
     authors:
       - "Byung Mun Kim"
@@ -56,17 +76,6 @@ sources:
     note: >-
       Establishes R(c, k) = LB(c, k) above an asymptotic threshold and poses
       determining the exact threshold nu(k), including the conjecture nu(5) = 66.
-    author_endorsement: "not-contacted"
-  - title: "Two-color Rado numbers for x + y + c = kz"
-    authors:
-      - "A. Martinelli"
-      - "D. Schaal"
-    type: "paper"
-    location: "Ars Combinatoria 85 (2007), 161-171"
-    relationship: "background"
-    note: >-
-      Establishes the general lower bound LB(c, k) and Lemma 3 showing that
-      c*(k) is an exception (R(c*(k), k) > LB(c*(k), k)) for every k >= 3.
     author_endorsement: "not-contacted"
   - title: "Two-color Rado numbers for x + y + c = kz"
     authors:
@@ -102,12 +111,17 @@ status:
   scope: >-
     Complete, unconditional proof of both halves of the exact last-exception
     theorem for every integer k >= 3 in pure core Lean 4 (zero Mathlib imports,
-    68 verified declarations): (1) R(c, k) = LB(c, k) for every valid c > c*(k),
-    where Valid c k means k odd or c even; (2) R(c*(k), k) > LB(c*(k), k) via
-    explicit non-monochromatic 2-colourings of [1, LB(c*(k), k)] for odd and
-    even k; (3) the threshold equivalence nu_iff, exact small values for
-    k = 3..10, and the Kim-Song-Hwang (2023) conjecture nu(5) = 66. Does not
-    determine individual Rado numbers R(c, k) for exceptions c <= c*(k).
+    68 verified declarations): (1) original reflection proof of the upper half
+    R(c, k) = LB(c, k) for every valid c > c*(k), where Valid c k means k odd
+    or c even; (2) formalization of Martinelli and Schaal's (2007) Lemma 3
+    lower half R(c*(k), k) > LB(c*(k), k) via explicit non-monochromatic
+    2-colourings of [1, LB(c*(k), k)] for odd and even k; (3) the threshold
+    equivalence nu_iff showing that "R(c, k) = LB(c, k) for all valid c >= v"
+    holds iff c*(k) < v (so the least integer cutoff is c*(k) + 1, while the
+    least valid cutoff nu(k) satisfying Valid nu(k) k is c*(k) + 1 for odd k
+    and c*(k) + 2 for even k), exact least valid cutoffs for k = 3..10, and
+    the Kim-Song-Hwang (2023) conjecture nu(5) = 66. Does not determine
+    individual Rado numbers R(c, k) for exceptions c <= c*(k).
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: ["propext", "Quot.sound", "Classical.choice"]
@@ -135,22 +149,28 @@ fidelity:
   divergences: >-
     None. All claims on mathdiscoveries.org/results/rado-numbers-last-exception
     (both halves of the main theorem for all k >= 3, nu_iff, nu(5) = 66, and
-    the k = 3..10 threshold table) are formalized unconditionally in core
-    Lean 4 with exact statement fidelity.
+    the k = 3..10 least valid cutoff table) are formalized unconditionally in
+    core Lean 4 with exact statement fidelity. Note that nu_iff quantifies over
+    all natural-number cutoffs v (giving least integer cutoff c*(k) + 1), while
+    requiring Valid nu(k) k (even for even k, matching c*(k) being even when k
+    is even) yields the least valid cutoff nu(k) = c*(k) + 1 (odd k) and
+    c*(k) + 2 (even k).
 
 review:
   status: agent-reviewed
   reviewers:
     - "AI review agents directed by Tyler B. Hughes"
   notes: >-
-    Audited by AI review agents and verified for standard axioms only via
-    RadoNu/Verify.lean and 6-kernel comparator replay. No human mathematician
-    has yet refereed the proof.
+    Audited by AI review agents for statement fidelity and checked via
+    RadoNu/Verify.lean (zero sorry, zero native_decide, standard axioms
+    propext, Quot.sound, Classical.choice only). Independent kernel
+    verification is recorded in Palomar's mechanical verification report. No
+    human mathematician has yet refereed the proof.
 
 alignment:
   namespace: "RadoNuChallenge"
   statements:
-    - source: "Main theorem (both halves, expanded quantifiers): for every k >= 3, R(c, k) = LB(c, k) for every valid c > c*(k) and R(c*(k), k) > LB(c*(k), k)"
+    - source: "Main theorem (both halves, expanded quantifiers): for every k >= 3, R(c, k) = LB(c, k) for every valid c > c*(k) (original upper half) and R(c*(k), k) > LB(c*(k), k) (Martinelli-Schaal 2007 Lemma 3)"
       lean: "RadoNuChallenge.rado_last_exception"
       module: "Challenge"
       status: proved
@@ -160,23 +180,23 @@ alignment:
       module: "Challenge"
       status: proved
       note: "Original reflection proof x |-> N + 1 - x combined with Martinelli-Schaal lower bound."
-    - source: "Lower half (Martinelli-Schaal Lemma 3): c*(k) is an exception for every k >= 3"
+    - source: "Lower half (Martinelli-Schaal 2007 Lemma 3): c*(k) is an exception for every k >= 3"
       lean: "RadoNuChallenge.not_forced_cstar"
       module: "Challenge"
       status: proved
-      note: "Explicit non-monochromatic 2-colourings of [1, LB(c*(k), k)] for odd and even k."
-    - source: "Threshold equivalence: R(c, k) = LB(c, k) for all valid c >= v iff c*(k) < v"
+      note: "Formalization of Martinelli-Schaal (2007) Lemma 3 via explicit non-monochromatic 2-colourings of [1, LB(c*(k), k)] for odd and even k."
+    - source: "Threshold equivalence over all natural-number cutoffs v: R(c, k) = LB(c, k) for all valid c >= v iff c*(k) < v"
       lean: "RadoNuChallenge.nu_iff"
       module: "Challenge"
       status: proved
-      note: "Determines nu(k) = c*(k) + 1 (odd k) and c*(k) + 2 (even k) for all k >= 3."
+      note: "Least integer cutoff is c*(k) + 1; restricting to valid cutoffs (Valid nu(k) k, i.e., even for even k) gives least valid cutoff nu(k) = c*(k) + 1 (odd k) and c*(k) + 2 (even k)."
     - source: "Kim-Song-Hwang (2023) conjecture: nu(5) = 66"
       lean: "RadoNuChallenge.nu_5_eq_66"
       module: "Challenge"
       status: proved
       note: "R(c, 5) = LB(c, 5) for all c >= 66, and false for c = 65."
-    - source: "Exact small values nu(k) = 13, 30, 66, 104, 183, 250, 388, 492 for k = 3..10"
+    - source: "Least valid cutoffs nu(k) = c*(k) + 1 (odd k), c*(k) + 2 (even k) = 13, 30, 66, 104, 183, 250, 388, 492 for k = 3..10"
       lean: "RadoNuChallenge.nu_small_values"
       module: "Challenge"
       status: proved
-      note: "Direct kernel decide check."
+      note: "Direct kernel decide check of the least valid cutoff values (since c*(k) is even for even k, c*(k) + 1 is odd/invalid and c*(k) + 2 is the least valid c > c*(k))."

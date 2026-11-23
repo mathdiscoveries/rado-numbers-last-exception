@@ -4,7 +4,7 @@ Pure core Lean 4 (`v4.35.0`, **zero external dependencies / zero Mathlib imports
 
 $$c^*(k) = \begin{cases} \dfrac{k(k^2 + k - 4)}{2} & (k \text{ odd}), \\[6pt] \dfrac{k(k^2 - 2)}{2} & (k \text{ even}), \end{cases}$$
 
-so that $R(c, k) = \mathrm{LB}(c, k)$ for every valid $c > c^*(k)$ (where valid means $k$ odd or $c$ even), while $R(c^*(k), k) > \mathrm{LB}(c^*(k), k)$, giving the exact threshold $\nu(k) = 13, 30, 66, 104, 183, 250, 388, 492, \dots$ for $k = 3, \dots, 10$ and settling the conjecture $\nu(5) = 66$ of Kim, Song, and Hwang (2023).
+so that $R(c, k) = \mathrm{LB}(c, k)$ for every valid $c > c^*(k)$ (where valid means $k$ odd or $c$ even), while $R(c^*(k), k) > \mathrm{LB}(c^*(k), k)$. In `nu_iff`, the property "$R(c, k) = \mathrm{LB}(c, k)$ for all valid $c \ge v$" holds for all natural-number cutoffs $v > c^*(k)$ (so the least integer cutoff is $c^*(k) + 1$), while restricting to valid cutoffs (`Valid (ν(k)) k`, i.e., even when $k$ is even) gives the least valid cutoff $\nu(k) = c^*(k) + 1$ for odd $k$ and $c^*(k) + 2$ for even $k$, namely $13, 30, 66, 104, 183, 250, 388, 492, \dots$ for $k = 3, \dots, 10$, settling the conjecture $\nu(5) = 66$ of Kim, Song, and Hwang (2023).
 
 ## Provenance & Review Status
 
