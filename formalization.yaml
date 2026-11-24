@@ -11,12 +11,13 @@ project:
     k(k^2 + k - 4)/2 for odd k and k(k^2 - 2)/2 for even k. Both halves are
     formalized unconditionally: (1) an original reflection proof (x |-> N+1-x)
     of the upper half R(c, k) = LB(c, k) for every valid c > c*(k) (valid means
-    k odd or c even), and (2) Martinelli and Schaal's (2007) Lemma 3 lower half
-    showing non-forcing at LB(c*(k), k), i.e., there exists a 2-colouring of
-    [1, LB(c*(k), k)] with no monochromatic solution of x + y + c*(k) = k z
-    (so ¬ Forced (c*(k)) k (LB (c*(k)) k) and c*(k) is an exception to
-    R(c, k) = LB(c, k); finite existence of R(c*(k), k) itself is not
-    formalized). In nu_iff, the property "R(c, k) = LB(c, k) for all valid
+    k odd or c even) combined with the general lower bound LB(c, k) of
+    Martinelli and Schaal (2007, Lemma 2), and (2) an explicit boundary
+    colouring showing non-forcing at LB(c*(k), k), i.e., there exists a
+    2-colouring of [1, LB(c*(k), k)] with no monochromatic solution of
+    x + y + c*(k) = k z (so ¬ Forced (c*(k)) k (LB (c*(k)) k) and c*(k) is an
+    exception to R(c, k) = LB(c, k); finite existence of R(c*(k), k) itself is
+    not formalized). In nu_iff, the property "R(c, k) = LB(c, k) for all valid
     c >= v" holds iff c*(k) < v, so the least integer cutoff is c*(k) + 1
     while the least valid cutoff nu(k) (requiring Valid nu(k) k, i.e., even
     when k is even) is c*(k) + 1 for odd k and c*(k) + 2 for even k, giving
@@ -36,18 +37,19 @@ classification:
     - "11B75"
 
 sources:
-  - title: "Two-color Rado numbers for x + y + c = kz"
+  - title: "On Generalized Schur Numbers for x_1 + x_2 + c = kx_3"
     authors:
-      - "A. Martinelli"
-      - "D. Schaal"
+      - "Bernie Martinelli"
+      - "Daniel Schaal"
     type: "paper"
-    location: "Ars Combinatoria 85 (2007), 161-171"
+    location: "Ars Combinatoria 85 (2007), 33-42"
     relationship: "formalizes"
     note: >-
-      Formalizes the general lower bound LB(c, k) (lower_col / lower) and
-      Lemma 3 establishing non-forcing at [1, LB(c*(k), k)] for every k >= 3
-      (RadoNuChallenge.not_forced_cstar and the second conjunct of
-      RadoNuChallenge.rado_last_exception).
+      Formalizes Lemma 2 (p. 36), which establishes the general lower bound
+      LB(c, k) = ceil((2 ceil((c + 2)/k) + c)/k) for all positive integers c
+      and k via a two-block colouring (lower_col / lower in RadoNu/RadoNu.lean).
+      Note that Lemma 3 (p. 37) treats negative c; the boundary colouring at
+      c*(k) formalized in not_forced_cstar is separate.
     author_endorsement: "not-contacted"
   - title: "The last exception for two-colour Rado numbers"
     authors:
@@ -58,11 +60,12 @@ sources:
     relationship: "other"
     note: >-
       Original upper-half reflection proof (R(c, k) = LB(c, k) for all valid
-      c > c*(k), settling nu_iff and nu(5) = 66) and complete core Lean 4
-      formalization of both halves, discovered, written, and verified by AI
-      research agents built and directed by Tyler B. Hughes. The lower-half
-      non-forcing theorem at LB(c*(k), k) formalizes Martinelli and Schaal
-      (2007, Lemma 3), listed above with relationship formalizes. Not found in
+      c > c*(k), settling nu_iff and nu(5) = 66), boundary colouring avoiding
+      monochromatic solutions on [1, LB(c*(k), k)] for every k >= 3, and
+      complete core Lean 4 formalization of both halves, discovered, written,
+      and verified by AI research agents built and directed by Tyler B. Hughes.
+      The general lower bound LB(c, k) formalizes Martinelli and Schaal
+      (2007, Lemma 2), listed above with relationship formalizes. Not found in
       the literature searches logged (arXiv, zbMATH Open, DataCite, CORE,
       Zenodo, HAL, OSF, GitHub, and a 5-query Google Scholar sweep on
       2026-11-22; full text of Myers 2015 thesis and paywalled Kim-Song-Hwang
@@ -70,7 +73,7 @@ sources:
     author_endorsement: "participated"
   - title: "Two-color Rado number of x + y + c = kz for large c"
     authors:
-      - "Byung Mun Kim"
+      - "Byeong Moon Kim"
       - "Byung Chul Song"
       - "Woonjae Hwang"
     id: "https://doi.org/10.1016/j.disc.2023.113597"
@@ -90,23 +93,23 @@ sources:
     location: "Discrete Mathematics 289 (2004), 63-69"
     relationship: "background"
     author_endorsement: "not-contacted"
-  - title: "Two-color Rado numbers for x + y + c = 3z"
+  - title: "Generalized Schur numbers for x_1 + x_2 + c = 3x_3"
     authors:
-      - "A. E. Kezdy"
-      - "H. S. Snevily"
-      - "C. Wang"
+      - "A. Kézdy"
+      - "H. Snevily"
+      - "S. White"
     type: "paper"
-    location: "Journal of Combinatorial Mathematics and Combinatorial Computing (2009)"
+    location: "Electronic Journal of Combinatorics 16 (2009), 1-13"
     relationship: "background"
     note: "Determines the k = 3 case nu(3) = 13."
     author_endorsement: "not-contacted"
-  - title: "The 2-color Rado number of x + y + c = 4z"
+  - title: "Two-color Rado number for x + y + c = 4z"
     authors:
       - "S. Guo"
     type: "paper"
-    location: "Discrete Mathematics (2010)"
+    location: "Ars Combinatoria 94 (2010), 257-264"
     relationship: "background"
-    note: "Settles the k = 4 case nu(4) = 30 together with the 2023 remark."
+    note: "Shows R(c, 4) = LB(c, 4) for even c >= 34; settles nu(4) = 30 together with the 2023 remark."
     author_endorsement: "not-contacted"
 
 related_formalizations: []
@@ -116,11 +119,12 @@ status:
     Complete, unconditional proof of both halves of the exact last-exception
     characterization for every integer k >= 3 in pure core Lean 4 (zero Mathlib
     imports, 68 verified declarations): (1) original reflection proof of the
-    upper half R(c, k) = LB(c, k) for every valid c > c*(k), where Valid c k
-    means k odd or c even; (2) formalization of Martinelli and Schaal's (2007)
-    Lemma 3 lower half establishing non-forcing at LB(c*(k), k), i.e.,
-    ¬ Forced (c*(k)) k (LB (c*(k)) k), via explicit non-monochromatic
-    2-colourings of [1, LB(c*(k), k)] for odd and even k (so c*(k) fails
+    upper half R(c, k) = LB(c, k) for every valid c > c*(k) (where Valid c k
+    means k odd or c even), combined with Martinelli and Schaal's (2007,
+    Lemma 2) general lower bound LB(c, k); (2) explicit boundary colourings
+    establishing non-forcing at LB(c*(k), k), i.e.,
+    ¬ Forced (c*(k)) k (LB (c*(k)) k), via non-monochromatic 2-colourings of
+    [1, LB(c*(k), k)] for odd and even k (so c*(k) fails
     IsRado (c*(k)) k (LB (c*(k)) k); finite existence of R(c*(k), k) itself is
     not formalized); (3) the threshold equivalence nu_iff showing that
     "R(c, k) = LB(c, k) for all valid c >= v" holds iff c*(k) < v (so the
@@ -177,7 +181,7 @@ review:
 alignment:
   namespace: "RadoNuChallenge"
   statements:
-    - source: "Main theorem (both halves, expanded quantifiers): for every k >= 3, R(c, k) = LB(c, k) for every valid c > c*(k) (original upper half) and non-forcing at [1, LB(c*(k), k)] (Martinelli-Schaal 2007 Lemma 3)"
+    - source: "Main theorem (both halves, expanded quantifiers): for every k >= 3, R(c, k) = LB(c, k) for every valid c > c*(k) (upper half + Martinelli-Schaal 2007 Lemma 2 lower bound) and non-forcing at [1, LB(c*(k), k)] (boundary colouring)"
       lean: "RadoNuChallenge.rado_last_exception"
       module: "Challenge"
       status: proved
@@ -186,12 +190,12 @@ alignment:
       lean: "RadoNuChallenge.rado_eq_LB"
       module: "Challenge"
       status: proved
-      note: "Original reflection proof x |-> N + 1 - x combined with Martinelli-Schaal lower bound."
-    - source: "Lower half (Martinelli-Schaal 2007 Lemma 3): non-forcing at [1, LB(c*(k), k)] for every k >= 3"
+      note: "Original reflection proof x |-> N + 1 - x combined with Martinelli and Schaal (2007, Lemma 2) lower bound."
+    - source: "Boundary colouring: non-forcing at [1, LB(c*(k), k)] for every k >= 3"
       lean: "RadoNuChallenge.not_forced_cstar"
       module: "Challenge"
       status: proved
-      note: "Formalization of Martinelli-Schaal (2007) Lemma 3 via explicit non-monochromatic 2-colourings of [1, LB(c*(k), k)] for odd and even k (proves ¬ Forced (c*(k)) k (LB (c*(k)) k), so c*(k) is an exception; does not formalize finite existence of R(c*(k), k))."
+      note: "Explicit non-monochromatic 2-colourings of [1, LB(c*(k), k)] for odd and even k (proves ¬ Forced (c*(k)) k (LB (c*(k)) k), so c*(k) is an exception; does not formalize finite existence of R(c*(k), k))."
     - source: "Threshold equivalence over all natural-number cutoffs v: R(c, k) = LB(c, k) for all valid c >= v iff c*(k) < v"
       lean: "RadoNuChallenge.nu_iff"
       module: "Challenge"

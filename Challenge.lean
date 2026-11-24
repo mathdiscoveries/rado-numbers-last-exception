@@ -22,7 +22,7 @@ Main theorems compared by Palomar:
    explicit quantifiers for every `k ≥ 3`.
 2. `rado_eq_LB`: Upper half — `R(c, k) = LB(c, k)` for every `k ≥ 3` and every valid
    `c > c*(k)`.
-3. `not_forced_cstar`: Lower half (Martinelli–Schaal Lemma 3) — `c*(k)` is an exception:
+3. `not_forced_cstar`: Boundary colouring — `c*(k)` is an exception:
    `[1, LB(c*(k), k)]` admits a 2-colouring with no monochromatic solution.
 4. `nu_iff`: Exact threshold equivalence over all natural-number cutoffs `v` —
    `R(c, k) = LB(c, k)` holds for all valid `c ≥ v` if and only if `c*(k) < v`.
@@ -82,7 +82,7 @@ theorem rado_eq_LB {k c : Nat} (hk : 3 ≤ k) (hc : cstar k < c)
     (hval : Valid c k) : IsRado c k (LB c k) := by
   sorry
 
-/-- Lower half (Martinelli–Schaal 2007, Lemma 3): `[1, LB(c*(k), k)]` is not forced
+/-- Boundary colouring: `[1, LB(c*(k), k)]` is not forced
 for `x + y + c*(k) = k z` (some 2-colouring has no monochromatic solution, so `c*(k)`
 is an exception to `R(c, k) = LB(c, k)`). -/
 theorem not_forced_cstar {k : Nat} (hk : 3 ≤ k) :
