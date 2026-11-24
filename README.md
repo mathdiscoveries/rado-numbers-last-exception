@@ -1,5 +1,7 @@
 # The Last Exception for Two-Colour Rado Numbers (`x + y + c = kz`)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24490761.svg)](https://doi.org/10.5281/zenodo.24490761)
+
 Pure core Lean 4 (`v4.35.0`, **zero external dependencies / zero Mathlib imports**, `0 sorry`, `0 native_decide`, standard axioms only) formalization proving both halves of the exact last-exception formula for the 2-colour Rado number $R(c, k)$ of $x + y + c = kz$ for every integer $k \ge 3$:
 
 $$c^*(k) = \begin{cases} \dfrac{k(k^2 + k - 4)}{2} & (k \text{ odd}), \\[6pt] \dfrac{k(k^2 - 2)}{2} & (k \text{ even}), \end{cases}$$
