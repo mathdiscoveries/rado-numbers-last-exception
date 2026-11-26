@@ -9,8 +9,8 @@ project:
     determining the exact last exception c*(k) for the 2-colour Rado number
     R(c, k) of x + y + c = kz for every integer k >= 3, where c*(k) =
     k(k^2 + k - 4)/2 for odd k and k(k^2 - 2)/2 for even k. Both halves are
-    formalized unconditionally: (1) an original reflection proof (x |-> N+1-x)
-    of the upper half R(c, k) = LB(c, k) for every valid c > c*(k) (valid means
+    formalized unconditionally: (1) the companion paper's reflection proof
+    (x |-> N+1-x) of the upper half R(c, k) = LB(c, k) for every valid c > c*(k) (valid means
     k odd or c even) combined with the general lower bound LB(c, k) of
     Martinelli and Schaal (2007, Lemma 2), and (2) an explicit boundary
     colouring showing non-forcing at LB(c*(k), k), i.e., there exists a
@@ -51,25 +51,26 @@ sources:
       Note that Lemma 3 (p. 37) treats negative c; the boundary colouring at
       c*(k) formalized in not_forced_cstar is separate.
     author_endorsement: "not-contacted"
-  - title: "The last exception for two-colour Rado numbers"
+  - title: "The Last Exception for Two-Colour Rado Numbers of x + y + c = kz for Every k >= 3"
     authors:
       - "Tyler B. Hughes"
     id: "https://mathdiscoveries.org/results/rado-numbers-last-exception"
-    type: "other"
-    location: "Companion page, verification archive, and prior-work search log at https://mathdiscoveries.org/results/rado-numbers-last-exception"
-    relationship: "other"
+    type: "paper"
+    location: "https://mathdiscoveries.org/results/rado-numbers-last-exception"
+    relationship: "formalizes"
     note: >-
-      Original upper-half reflection proof (R(c, k) = LB(c, k) for all valid
-      c > c*(k), settling nu_iff and nu(5) = 66), boundary colouring avoiding
-      monochromatic solutions on [1, LB(c*(k), k)] for every k >= 3, and
-      complete core Lean 4 formalization of both halves, discovered, written,
-      and verified by AI research agents built and directed by Tyler B. Hughes.
-      The general lower bound LB(c, k) formalizes Martinelli and Schaal
-      (2007, Lemma 2), listed above with relationship formalizes. Not found in
-      the literature searches logged (arXiv, zbMATH Open, DataCite, CORE,
-      Zenodo, HAL, OSF, GitHub, and a 5-query Google Scholar sweep on
-      2026-11-22; full text of Myers 2015 thesis and paywalled Kim-Song-Hwang
-      2026 remain unread). No human mathematician has yet refereed the proof.
+      The companion paper. It states and proves in writing every compared
+      statement of this package (Theorem 1, Corollaries 2 and 3), and the Lean
+      work formalizes them; the formalization presents no result that the paper
+      does not. The general lower bound LB(c, k) is Lemma 2 of Martinelli and
+      Schaal (2007), listed above. Prior results proved here a second time:
+      the case k = 3 of Kezdy, Snevily and White (2009) and Theorem 1 of Kim,
+      Song and Hwang (2023), listed below. Not found in the literature searches
+      logged (arXiv, zbMATH Open, DataCite, CORE, Zenodo, HAL, OSF, GitHub, and
+      a 5-query Google Scholar sweep on 2026-11-22; full text of Myers 2015
+      thesis and paywalled Kim-Song-Hwang 2026 remain unread [to check]). AI
+      research agents built and directed by Tyler B. Hughes generated and
+      checked this work. No human mathematician has yet refereed the proof.
     author_endorsement: "participated"
   - title: "Two-color Rado number of x + y + c = kz for large c"
     authors:
@@ -79,10 +80,14 @@ sources:
     id: "https://doi.org/10.1016/j.disc.2023.113597"
     type: "paper"
     location: "Discrete Mathematics 346 (2023), 113597"
-    relationship: "background"
+    relationship: "independently-proves"
     note: >-
-      Establishes R(c, k) = LB(c, k) above an asymptotic threshold and poses
-      determining the exact threshold nu(k), including the conjecture nu(5) = 66.
+      Establishes R(c, k) = LB(c, k) above an asymptotic threshold (Theorem 1:
+      every k >= 5 and every valid c >= 2k^3 + 2k^2 - k) and poses determining
+      the exact threshold nu(k), including the conjecture nu(5) = 66. Theorem 1
+      is a case of rado_eq_LB, proved here independently: the companion
+      paper's reflection proof does not use it. nu_5_eq_66 settles the
+      conjecture.
     author_endorsement: "not-contacted"
   - title: "Two-color Rado numbers for x + y + c = kz"
     authors:
@@ -100,8 +105,8 @@ sources:
       - "S. White"
     type: "paper"
     location: "Electronic Journal of Combinatorics 16 (2009), 1-13"
-    relationship: "background"
-    note: "Determines the k = 3 case nu(3) = 13."
+    relationship: "independently-proves"
+    note: "Determines the k = 3 case nu(3) = 13, which is the k = 3 entry of nu_small_values and the k = 3 case of rado_eq_LB, proved here independently."
     author_endorsement: "not-contacted"
   - title: "Two-color Rado number for x + y + c = 4z"
     authors:
@@ -118,7 +123,7 @@ status:
   scope: >-
     Complete, unconditional proof of both halves of the exact last-exception
     characterization for every integer k >= 3 in pure core Lean 4 (zero Mathlib
-    imports, 68 verified declarations): (1) original reflection proof of the
+    imports, 68 verified declarations): (1) the companion paper's reflection proof of the
     upper half R(c, k) = LB(c, k) for every valid c > c*(k) (where Valid c k
     means k odd or c even), combined with Martinelli and Schaal's (2007,
     Lemma 2) general lower bound LB(c, k); (2) explicit boundary colourings
@@ -190,7 +195,7 @@ alignment:
       lean: "RadoNuChallenge.rado_eq_LB"
       module: "Challenge"
       status: proved
-      note: "Original reflection proof x |-> N + 1 - x combined with Martinelli and Schaal (2007, Lemma 2) lower bound."
+      note: "Reflection proof x |-> N + 1 - x of the companion paper (Theorem 1(1)), combined with the Martinelli and Schaal (2007, Lemma 2) lower bound."
     - source: "Boundary colouring: non-forcing at [1, LB(c*(k), k)] for every k >= 3"
       lean: "RadoNuChallenge.not_forced_cstar"
       module: "Challenge"

@@ -13,7 +13,7 @@ so that $R(c, k) = \mathrm{LB}(c, k)$ for every valid $c > c^*(k)$ (where valid 
 - **Author:** Tyler B. Hughes (`mathdiscoveries.org/results/rado-numbers-last-exception`)
 - **Discovery & formalization:** Generated and checked by AI research agents built and directed by Tyler B. Hughes.
 - **Referee status:** No human mathematician has yet refereed the proof.
-- **Attribution:** The general lower bound $\mathrm{LB}(c, k)$ is due to Bernie Martinelli and Daniel Schaal (*Ars Combinatoria* 85, 2007, pp. 33–42, Lemma 2). The upper-half reflection proof for all $k \ge 3$, the explicit boundary colouring at $c^*(k)$, and the complete Lean 4 formalization of both halves are presented here (answering Byeong Moon Kim, Byung Chul Song, and Woonjae Hwang, *Discrete Mathematics* 346, 2023, 113597).
+- **Attribution:** The general lower bound $\mathrm{LB}(c, k)$ is due to Bernie Martinelli and Daniel Schaal (*Ars Combinatoria* 85, 2007, pp. 33-42, Lemma 2). The upper-half reflection proof for all $k \ge 3$ and the explicit boundary colouring at $c^*(k)$ are given in the [companion paper](https://mathdiscoveries.org/results/rado-numbers-last-exception) (Theorem 1), answering Byeong Moon Kim, Byung Chul Song, and Woonjae Hwang (*Discrete Mathematics* 346, 2023, 113597); this repository formalizes both halves in Lean 4.
 
 ## Build & Verify
 
