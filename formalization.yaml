@@ -22,7 +22,11 @@ project:
     while the least valid cutoff nu(k) (requiring Valid nu(k) k, i.e., even
     when k is even) is c*(k) + 1 for odd k and c*(k) + 2 for even k, giving
     least valid cutoffs 13, 30, 66, 104, 183, 250, 388, 492 for k = 3..10 and
-    settling the Kim-Song-Hwang (2023) conjecture nu(5) = 66.
+    settling the Kim-Song-Hwang (2023) conjecture nu(5) = 66. Coverage by this
+    package's Palomar comparison: of the companion paper's 6 main results, 3
+    are compared in Lean in full (50%; Theorem 1 and Corollaries 2 and 3);
+    Theorems 4 and 5 and Lemma 6 are proved in this package's Lean library
+    but not compared. Abstract claims: 3 of 6 compared in Lean (50%).
   authors:
     - "Tyler B. Hughes"
   license: "Apache-2.0"
@@ -163,10 +167,13 @@ automation:
 
 fidelity:
   divergences: >-
-    None. All claims on mathdiscoveries.org/results/rado-numbers-last-exception
-    (both halves of the main theorem for all k >= 3, nu_iff, nu(5) = 66, and
-    the k = 3..10 least valid cutoff table) are formalized unconditionally in
-    core Lean 4 with exact statement fidelity. Note that nu_iff quantifies over
+    None for the compared statements: both halves of the main theorem for all
+    k >= 3, nu_iff, nu(5) = 66, and the k = 3..10 least valid cutoff table
+    (Theorem 1 and Corollaries 2 and 3 of the companion paper at
+    mathdiscoveries.org/results/rado-numbers-last-exception) are formalized
+    unconditionally in core Lean 4 with exact statement fidelity. Theorems 4
+    and 5 and Lemma 6 of the paper are proved in the library but not
+    compared. Note that nu_iff quantifies over
     all natural-number cutoffs v (giving least integer cutoff c*(k) + 1), while
     requiring Valid nu(k) k (even for even k, matching c*(k) being even when k
     is even) yields the least valid cutoff nu(k) = c*(k) + 1 (odd k) and
